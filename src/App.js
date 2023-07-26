@@ -9,7 +9,7 @@ function App() {
 
   const getPokemon = async () => {
     try {
-      let item = await fetch("https://pokeapi.co/api/v2/pokemon/charmander");
+      let item = await fetch("https://pokeapi.co/api/v2/pokemon/zamazenta");
       let data = await item.json();
       console.log(data);
       setPokemon(data);
@@ -66,12 +66,27 @@ function App() {
           <img src={pokemon.sprites.back_default} alt="" className="back" />
           <img src={opp.sprites.front_default} alt="" className="front" />
           <h2>Access a move: {pokemon.moves[5].move.name}</h2>
-          {}
-
+          <h1>Player Stats:</h1>
+          {pokemon.stats.map((item) => {
+            return (
+              <h1 key={item.stat.name}>
+                {item.stat.name}:{item.base_stat}
+              </h1>
+            );
+          })}
+          <h2>Opp Stats</h2>
+          {opp.stats.map((item) => {
+            return (
+              <h1 key={item.stat.name}>
+                {item.stat.name}:{item.base_stat}
+              </h1>
+            );
+          })}
+          <h2>We will not Include null accuracy moves</h2>
           {moves ? (
             moves.map((item) => {
               console.log(item.name);
-              return <h3 key={item.name}>Move ID: {item.name}</h3>;
+              return <button key={item.name}>Move ID: {item.name}</button>;
             })
           ) : (
             <h3>Loading</h3>
