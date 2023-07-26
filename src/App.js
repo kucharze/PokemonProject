@@ -71,7 +71,7 @@ function App() {
           {moves ? (
             moves.map((item) => {
               console.log(item.name);
-              return <h3>Move ID: {item.name}</h3>;
+              return <h3 key={item.name}>Move ID: {item.name}</h3>;
             })
           ) : (
             <h3>Loading</h3>
