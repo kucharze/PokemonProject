@@ -1,10 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function App() {
   const [pokemon, setPokemon] = useState(null);
+  const [opp, setOpp] = useState(null);
   const [moves, setMoves] = useState(null);
 
   const getPokemon = async () => {
@@ -13,7 +13,20 @@ function App() {
       let data = await item.json();
       console.log(data);
       setPokemon(data);
-      //getMove();
+    } catch (err) {
+      console.log("We did not find a valid pokemon");
+    }
+  };
+  const getOpp = async () => {
+    try {
+      let item = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(
+          Math.random() * (100 - 1 + 1) + 1
+        )}`
+      );
+      let data = await item.json();
+      console.log("opp:", data);
+      setOpp(data);
     } catch (err) {
       console.log("We did not find a valid pokemon");
     }
@@ -37,19 +50,21 @@ function App() {
 
   useEffect(() => {
     getPokemon();
+    getOpp();
     // getMove();
   }, []);
 
   return (
     <div className="App">
       test
-      {pokemon && (
+      {pokemon && opp && (
         <div>
           <h1>{pokemon.name}</h1>
           <h1>Experience: {pokemon.base_experience}</h1>
           <h1>Pics</h1>
-          <img src={pokemon.sprites.front_default} alt="" />
-          <img src={pokemon.sprites.back_default} alt="" />
+
+          <img src={pokemon.sprites.back_default} alt="" className="back" />
+          <img src={opp.sprites.front_default} alt="" className="front" />
           <h2>Access a move: {pokemon.moves[5].move.name}</h2>
           {}
 
