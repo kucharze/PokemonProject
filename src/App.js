@@ -1,12 +1,9 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from "./context/context";
 
 function App() {
-  const [pokemon, setPokemon] = useState(null);
-  const [opp, setOpp] = useState(null);
-  const [moves, setMoves] = useState(null);
-
   const getPokemon = async () => {
     try {
       let item = await fetch("https://pokeapi.co/api/v2/pokemon/zamazenta");
