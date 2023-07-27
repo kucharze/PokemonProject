@@ -4,6 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import { AppContext } from "./context/context";
 
 function App() {
+  let { pokemon, opp, setPokemon, setOpp } = useContext(AppContext);
+
   const getPokemon = async () => {
     try {
       let item = await fetch("https://pokeapi.co/api/v2/pokemon/zamazenta");
