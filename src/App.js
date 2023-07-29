@@ -4,7 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import { AppContext } from "./context/context";
 
 function App() {
-  let { pokemon, opp, setPokemon, setOpp } = useContext(AppContext);
+  let { pokemon, opp, setPokemon, setOpp, setMoves, moves } =
+    useContext(AppContext);
 
   const getPokemon = async () => {
     try {
