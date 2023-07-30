@@ -2,6 +2,8 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "./context/context";
+import Player from "./components/Player";
+import Opponent from "./components/Opponent";
 
 function App() {
   let { pokemon, opp, setPokemon, setOpp, setMoves, moves } =
@@ -38,7 +40,7 @@ function App() {
     for (let i = 0; i < 4; i++) {
       let item = await fetch(
         `${
-          pokemon.moves[Math.floor(Math.random() * (100 - 1 + 1) + 1)].move.url
+          pokemon.moves[Math.floor(Math.random() * (95 - 1 + 1) + 1)].move.url
         }`
       );
       let data = await item.json();
@@ -58,39 +60,15 @@ function App() {
     <div className="App">
       test
       {pokemon && opp && (
-        <div>
-          <h1>{pokemon.name}</h1>
-          <h1>Experience: {pokemon.base_experience}</h1>
+        <div className="battle">
           <h1>Pics</h1>
 
-          <img src={pokemon.sprites.back_default} alt="" className="back" />
-          <img src={opp.sprites.front_default} alt="" className="front" />
           <h2>Access a move: {pokemon.moves[5].move.name}</h2>
           <h1>Player Stats:</h1>
-          {pokemon.stats.map((item) => {
-            return (
-              <h1 key={item.stat.name}>
-                {item.stat.name}:{item.base_stat}
-              </h1>
-            );
-          })}
+          <Player />
           <h2>Opp Stats</h2>
-          {opp.stats.map((item) => {
-            return (
-              <h1 key={item.stat.name}>
-                {item.stat.name}:{item.base_stat}
-              </h1>
-            );
-          })}
+          <Opponent />
           <h2>We will not Include null accuracy moves</h2>
-          {moves ? (
-            moves.map((item) => {
-              console.log(item.name);
-              return <button key={item.name}>Move ID: {item.name}</button>;
-            })
-          ) : (
-            <h3>Loading</h3>
-          )}
 
           <button onClick={getMove}>Load moves</button>
         </div>
