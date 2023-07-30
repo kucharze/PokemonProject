@@ -6,9 +6,26 @@ let AppContextProvider = (props) => {
   const [pokemon, setPokemon] = useState(null);
   const [opp, setOpp] = useState(null);
   const [moves, setMoves] = useState(null);
+
+  const getMove = async () => {
+    // let item = await fetch(`https://pokeapi.co/api/v2/move/851/`);
+    let moveList = [];
+    for (let i = 0; i < 4; i++) {
+      let item = await fetch(
+        `${
+          pokemon.moves[Math.floor(Math.random() * (95 - 1 + 1) + 1)].move.url
+        }`
+      );
+      let data = await item.json();
+      console.log("move", data);
+      moveList.push(data);
+    }
+    await setMoves(moveList);
+  };
+
   return (
     <AppContext.Provider
-      value={{ pokemon, setPokemon, opp, setOpp, moves, setMoves }}
+      value={{ pokemon, setPokemon, opp, setOpp, moves, setMoves, getMove }}
     >
       {props.children}
     </AppContext.Provider>

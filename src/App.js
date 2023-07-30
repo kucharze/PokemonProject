@@ -34,22 +34,6 @@ function App() {
     }
   };
 
-  const getMove = async () => {
-    // let item = await fetch(`https://pokeapi.co/api/v2/move/851/`);
-    let moveList = [];
-    for (let i = 0; i < 4; i++) {
-      let item = await fetch(
-        `${
-          pokemon.moves[Math.floor(Math.random() * (95 - 1 + 1) + 1)].move.url
-        }`
-      );
-      let data = await item.json();
-      console.log("move", data);
-      moveList.push(data);
-    }
-    await setMoves(moveList);
-  };
-
   useEffect(() => {
     getPokemon();
     getOpp();
@@ -68,8 +52,6 @@ function App() {
           <Player />
           <Opponent />
           <h2>We will not Include null accuracy moves</h2>
-
-          <button onClick={getMove}>Load moves</button>
         </div>
       )}
     </div>

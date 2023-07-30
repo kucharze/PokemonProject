@@ -3,7 +3,7 @@ import { AppContext } from "../context/context";
 
 
 function Player(props) {
-    let { pokemon, setPokemon, setMoves, moves } =
+    let { pokemon, setPokemon, setMoves, moves, getMove } =
     useContext(AppContext);
   return (
     <div className='player'>
@@ -26,6 +26,8 @@ function Player(props) {
           ) : (
             <h3>Loading</h3>
           )}
+
+          <button onClick={getMove}>Load moves</button>
     </div>
   )
 }
