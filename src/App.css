@@ -2,9 +2,14 @@
   text-align: center;
 }
 
+.battle {
+  display: flex;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  display: fle;
 }
 
 @media (prefers-reduced-motion: no-preference) {
