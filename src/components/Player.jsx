@@ -7,6 +7,7 @@ function Player(props) {
     useContext(AppContext);
   return (
     <div className='player'>
+        <h1>Player Stats:</h1>
         <h1>{pokemon.name}</h1>
           <h1>Experience: {pokemon.base_experience}</h1>
       <img src={pokemon.sprites.back_default} alt="" className='back'/>

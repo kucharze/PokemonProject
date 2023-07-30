@@ -6,6 +6,9 @@ function Opponent() {
     useContext(AppContext);
   return (
     <div>
+        <h1>Opponnent stats</h1>
+        <h1>{opp.name}</h1>
+          <h1>Experience: {opp.base_experience}</h1>
        <img src={opp.sprites.front_default} alt="" className="front" />
        {opp.stats.map((item) => {
             return (

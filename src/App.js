@@ -64,9 +64,8 @@ function App() {
           <h1>Pics</h1>
 
           <h2>Access a move: {pokemon.moves[5].move.name}</h2>
-          <h1>Player Stats:</h1>
+
           <Player />
-          <h2>Opp Stats</h2>
           <Opponent />
           <h2>We will not Include null accuracy moves</h2>
 
