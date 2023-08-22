@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import axios from "axios";
 
 export const AppContext = createContext();
 
@@ -16,14 +17,14 @@ let AppContextProvider = (props) => {
       //   "Move url to pull"
       //   // pokemon.moves[Math.floor(Math.random() * ( - 1 + 1) + 1)].move.url
       // );
-      let item = await fetch(
+      let item = await axios.get(
         `${
           pokemon.moves[
             Math.floor(Math.random() * (pokemon.moves.length - 1) + 1)
           ].move.url
         }`
       );
-      let data = await item.json();
+      let data = await item.data;
       console.log("move", data);
       moveList.push(data);
     }
